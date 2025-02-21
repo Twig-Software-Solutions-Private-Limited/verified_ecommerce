@@ -20,12 +20,14 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'crispy_forms',
+    'crispy_bootstrap5',
     'django_countries',
     'core'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     "allauth.account.middleware.AccountMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,7 +90,9 @@ if ENVIRONMENT == 'production':
 # Auth
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend'
+   
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
 )
 
 SITE_ID = 1
@@ -103,14 +107,17 @@ SOCIALACCOUNT_PROVIDERS = {
         'APP': {
             'client_id': '123',
             'secret': '456',
-            'key': '666'
+            'key': ''
         }
     }
 }
-
+ 
 # CRISPY FORM
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 STRIPE_PUBLIC_KEY = 'pk_test_lX3r6OMjOU2yzFsNSHq6belT00EY82kZmH'
 STRIPE_SECRET_KEY = 'sk_test_tn0CTDaIJHUJyAqhsf39cfsC00LNjsqDnb'
+
